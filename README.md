@@ -1,4 +1,4 @@
-ruby_codekata
+haskell_codekata
 =============
 
-codekata for ruby
+[codekata](http://codekata.pragprog.com/2007/01/code_kata_backg.html) for Haskell
