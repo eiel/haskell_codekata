@@ -59,20 +59,15 @@ chop x xs = if end == -1 then -1 else bsearch array x
 
 bsearch :: Array Int (Int,Int) -> Int -> Int
 bsearch array x
-  | start == end = if x == value then index else -1
   | x == value = index
-  | x < value = let next = (half-1)
-                in if inArrayRange next
-                   then bsearch' (start, next)
-                   else -1
-  | x > value = let next = (half+1)
-                in if inArrayRange next
-                   then bsearch' (next, end)
-                   else -1
+  | x < value = bsearch' (start , half-1)
+  | x > value = bsearch' (half+1, end)
     where
       arrayBounds = bounds $ array
       (start,end) = arrayBounds
       half = (start+end) `div` 2
       (value, index) = array ! half
       inArrayRange = inRange arrayBounds
-      bsearch' range = bsearch (ixmap range id array) x
+      bsearch' range@(s,e) = if s > e
+                             then -1
+                             else bsearch (ixmap range id array) x

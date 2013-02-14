@@ -51,7 +51,6 @@ chop x xs = if end == -1 then -1 else bsearch array (0,end) x
 
 bsearch :: Array Int Int -> (Int, Int) -> Int -> Int
 bsearch array (start,end) x
-  | start == end = if array ! start == x then start else -1
   | start > end = -1
   | x == n = half
   | x < n = bsearch array (start, half-1) x
